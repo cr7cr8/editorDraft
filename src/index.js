@@ -1,4 +1,4 @@
-import { ShowName } from "./components/ShowName"
+import  ShowName  from "./components/ShowName"
 
 
 

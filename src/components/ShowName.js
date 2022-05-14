@@ -4,7 +4,7 @@ import React, { Component, useContext } from "react"
 
 
 
-export function ShowName(){
+export default function ShowName() {
 
 
 
