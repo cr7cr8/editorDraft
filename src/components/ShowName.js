@@ -8,8 +8,7 @@ const ShowName = () => {
 
 
 
-    return Date.now()
-
+    return <h1>abcdefgh</h1>
 }
 
 export default ShowName;

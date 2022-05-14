@@ -1,18 +1,20 @@
-//import ShowName from "./components/ShowName"
+import ShowName from "./components/ShowName"
 
 
-function ShowName() {
+// function ShowName() {
 
 
-    console.log("sdfkjhshfka")
+//     console.log("sdfkjhshfka")
 
-}
+// }
 
 
 
-module.exports = {
+export default ShowName
 
-    ShowName: ShowName
-}
+// module.exports = {
+
+//     ShowName: ShowName
+// }
 
 
