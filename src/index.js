@@ -1,4 +1,4 @@
-import { ShowName } from "./components/avatar-chip"
+import { ShowName } from "./components/ShowName.js"
 
 
 
