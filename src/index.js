@@ -1,4 +1,5 @@
 import ShowName from "./components/ShowName"
+import showNum_ from "./components/ShowNum"
 
 
 // function ShowName() {
@@ -10,7 +11,9 @@ import ShowName from "./components/ShowName"
 
 
 
-export default ShowName
+export default ShowName;
+
+export const showNum = showNum_
 
 // module.exports = {
 
