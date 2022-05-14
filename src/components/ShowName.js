@@ -4,7 +4,7 @@ import React, { Component, useContext } from "react"
 
 
 
-export default function ShowName() {
+const ShowName = () => {
 
 
 
@@ -12,3 +12,4 @@ export default function ShowName() {
 
 }
 
+export default ShowName;
