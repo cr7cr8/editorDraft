@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, useReducer, useRef, useMemo, useCallback, useLayoutEffect, useContext, Component } from 'react';
 import { ThemeProvider, useTheme, createTheme, experimental_sx as sx } from '@mui/material/styles';
-import { EditorContextProvider as EditorCtx, EditorViewer } from "../context/EditorContextProvider";
+import { EditorContextProvider as EditorCtx, EditorViewer } from "./EditorContextProvider";
 import { Button, CssBaseline, Switch, Typography } from '@mui/material';
 
 
