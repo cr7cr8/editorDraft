@@ -8,7 +8,7 @@ const ShowName = () => {
 
 
 
-    return <h1>hihihddsd</h1>
+    return Date.now()
 
 }
 
