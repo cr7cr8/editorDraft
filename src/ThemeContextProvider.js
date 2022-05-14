@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, useReducer, useRef, useMemo, useCallback, useLayoutEffect, useContext, Component } from 'react';
 import { ThemeProvider, useTheme, createTheme, experimental_sx as sx } from '@mui/material/styles';
-import { EditorContextProvider as EditorCtx, EditorViewer } from "../context/EditorContextProvider";
+
 import { Button, CssBaseline, Switch, Typography } from '@mui/material';
 
 
@@ -220,18 +220,7 @@ export default function ThemeContextProvider({ cssBaseLine = true, ...props }) {
 
         <ThemeProvider theme={myTheme}>
             {cssBaseLine && <CssBaseline />}
-            <EditorCtx
-
-                peopleList={["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"]}
-                avatarPeopleList={["UweF23", "TonyCerl", "大发发", "m大Gsd哈"]}
-                downloadAvatarUrl={`https://picsum.photos/200`}
-                genAvatarLink={function (downloadAvatarUrl, personName) {
-                    return downloadAvatarUrl// + personName
-                }}
-
-             
-
-            />
+            {props.children}
         </ThemeProvider>
 
 
