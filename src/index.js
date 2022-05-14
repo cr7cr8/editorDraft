@@ -1,4 +1,4 @@
-import { ShowName } from "./components/ShowName.js"
+import { ShowName } from "./components/ShowName"
 
 
 
