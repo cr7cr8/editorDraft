@@ -53,5 +53,9 @@
     "plugins": [
       "@babel/plugin-transform-react-jsx"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cr7cr8/editorDraft.git"
   }
 }
