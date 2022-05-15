@@ -39,7 +39,7 @@ export function DraftEditor({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(Number(colorIndex)%colorArr.length)
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex) % colorArr.length)
 
 
 
@@ -224,7 +224,7 @@ export function DraftEditor({
 
                 }
             }),
-        [mode, sizeObj, colorObj],
+        [themeMode, colorIndex, mode, sizeObj, colorObj],
     );
 
     return (
@@ -263,7 +263,7 @@ export function DraftViewer({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(Number(colorIndex)%colorArr.length)
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex) % colorArr.length)
 
 
 
@@ -449,7 +449,7 @@ export function DraftViewer({
 
                 }
             }),
-        [mode, sizeObj, colorObj],
+        [themeMode, colorIndex, mode, sizeObj, colorObj],
     );
 
     return (
