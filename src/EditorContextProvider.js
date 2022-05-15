@@ -19,7 +19,22 @@ import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import { Container, Grid, Paper, IconButton, ButtonGroup, Stack, Button, Switch, Box, Hidden, Collapse } from '@mui/material';
 
 
+import { red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan, teal, green, lightGreen, lime, yellow, amber, orange, deepOrange, brown, grey, blueGrey } from '@mui/material/colors';
 
+const colorArr = [red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan, teal, green, lightGreen, lime, yellow, amber, orange, deepOrange, brown, grey, blueGrey]
+
+
+function useColorObj(colorIndex = 5) {
+
+    const [colorObj, setColorIndex] = useState(colorArr[colorIndex])
+
+    function setColorObj(index) {
+        setColorIndex(colorArr[index])
+    }
+
+    return [colorObj, setColorObj]
+
+}
 
 
 export default function ThemeContextProvider({ cssBaseLine = true, children, themeMode = "light", themeSizeObj = null }) {
@@ -468,26 +483,6 @@ export function EditorViewer({ preHtml, peopleList = [], avatarPeopleList = [], 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function extractText(dom) {
     let text = ""
     const option = {
@@ -506,3 +501,15 @@ function extractText(dom) {
 
     return text
 }
+
+
+
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+  }
