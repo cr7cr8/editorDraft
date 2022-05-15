@@ -22,17 +22,15 @@ function useColorObj(colorIndex = 5) {
 }
 
 
-export default function ThemeContextProvider({
+export default function DraftEditor({
 
     cssBaseLine = true,
 
     peopleList = ["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"],
     avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
     downloadAvatarUrl = "https://picsum.photos/200",
-    genAvatarLink = {
-        function(downloadAvatarUrl, personName) {
-            return downloadAvatarUrl// + personName
-        }
+    genAvatarLink = function (downloadAvatarUrl, personName) {
+        return downloadAvatarUrl// + personName
     },
     onChange,
     onSubmit,
@@ -73,8 +71,6 @@ export default function ThemeContextProvider({
 
 
     const [mode, setMode] = React.useState(props.mode || 'light');
-
-
 
     const colorBgObj = mode === "light"
         ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
@@ -250,7 +246,228 @@ export default function ThemeContextProvider({
 }
 
 
+export function DraftViewer({
+    cssBaseLine = true,
+    preHtml = "",
+    downloadImageUrl = "/api/picture/downloadPicture/",
+    downloadVoteUrl = "/api/voteBlock/",
+    avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
+    downloadAvatarUrl = "https://picsum.photos/200",
+    genAvatarLink = function (downloadAvatarUrl, personName) {
+        return downloadAvatarUrl// + personName
+    },
+    ...props }) {
 
+
+        const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
+        const [colorObj, setColorObj] = useColorObj(5)
+    
+    
+    
+        const scaleSizeObj = useCallback((factor = 1) => {
+            const obj = {}
+            Object.keys(sizeObj).forEach(itemKey => {
+    
+                const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
+                const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
+                obj[itemKey] = num + unit
+    
+            })
+    
+            return obj
+        }, [sizeObj])
+    
+    
+        const addingSizeObj = useCallback((numOfPix = 0) => {
+            const obj = {}
+            Object.keys(sizeObj).forEach(itemKey => {
+    
+                //  const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
+                //  const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
+                obj[itemKey] = `calc(${sizeObj[itemKey]} ${numOfPix >= 0 ? "+" : "-"} ${Math.abs(numOfPix)}px)`
+    
+            })
+    
+            return obj
+        }, [sizeObj])
+    
+    
+        const [mode, setMode] = React.useState(props.mode || 'light');
+    
+        const colorBgObj = mode === "light"
+            ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
+            : `rgba( ${hexToRgb(colorObj[900]).r}, ${hexToRgb(colorObj[900]).g}, ${hexToRgb(colorObj[900]).b},   0.5)`
+    
+
+
+    const myTheme = React.useMemo(
+        () =>
+            createTheme({
+
+                typography: {
+                    button: {
+                        textTransform: 'none'
+                    }
+                },
+
+                palette: {
+                    mode,
+                    panelColor: mode === "light" ? "lightgray" : "darkgray",
+                    mentionBg: mode === "light" ? "aliceblue" : "skyblue",
+                },
+                sizeObj,
+                setSizeObj,
+
+                colorArr,
+                colorObj, setColorObj,
+                colorBgObj,
+
+                setMode,
+                scaleSizeObj,
+                addingSizeObj,
+                mode,
+                isLight: mode === "light",
+                isDark: mode === "dark",
+
+                components: {
+
+                    MuiButton: {
+                        defaultProps: {
+                            variant: "contained",
+                            disableRipple: false,
+                        },
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+
+                                return [
+                                    //  ownerState.variant === 'body2' &&
+                                    sx({
+
+                                        bgcolor: theme.isLight
+                                            ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
+                                            : `rgba( ${hexToRgb(colorObj[900]).r}, ${hexToRgb(colorObj[900]).g}, ${hexToRgb(colorObj[900]).b},   0.5)`,
+                                        color: theme.palette.text.secondary,
+                                        fontSize: theme.addingSizeObj(-5),
+                                        "&:hover": {
+                                            bgcolor: theme.isLight ? colorObj[300] : colorObj[500],
+                                        },
+                                        backdropFilter: "blur(20px)",
+                                    }),
+
+                                ]
+                            }
+                        }
+
+                    },
+                    MuiPaper: {
+                        defaultProps: {
+
+                        },
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+
+                                return [
+                                    //  ownerState.variant === 'body2' &&
+                                    sx({
+                                        fontSize: theme.sizeObj,
+                                    }),
+
+                                ]
+                            }
+                        }
+                    },
+                    MuiTypography: {
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+
+                                return [
+                                    ownerState.variant === 'body2' &&
+                                    sx({
+                                        fontSize: theme.sizeObj,
+
+                                    }),
+
+                                ]
+                            }
+                        }
+
+                    },
+
+                    MuiSvgIcon: {
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+
+                                return [
+                                    //  ownerState.variant === 'body2' &&
+                                    sx({
+                                        color: theme.palette.text.secondary,
+                                    }),
+
+                                ]
+                            }
+                        }
+                    },
+                    MuiSwitch: {
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+                                return [
+                                    //  ownerState.variant === 'body2' &&
+                                    theme.isDark && sx({
+                                        "& .MuiSwitch-thumb": {
+                                            color: colorObj[300]
+                                        },
+                                    }),
+
+                                ]
+                            }
+                        }
+                    },
+                    MuiSlider: {
+                        styleOverrides: {
+                            root: ({ ownerState, theme, ...props }) => {
+                                return [
+                                    //  ownerState.variant === 'body2' &&
+                                    // theme.isDark && sx({
+                                    //     "& .MuiSwitch-thumb": {
+                                    //         color: colorObj[300]
+                                    //     },
+                                    // }),
+
+                                ]
+                            }
+                        }
+
+
+
+
+                    }
+
+
+
+                }
+            }),
+        [mode, sizeObj, colorObj],
+    );
+
+    return (
+
+        <ThemeProvider theme={myTheme}>
+            <>
+                {cssBaseLine && <CssBaseline />}
+                <EditorViewer
+                    preHtml={preHtml}
+                    downloadImageUrl={downloadImageUrl}
+                    downloadVoteUrl={downloadVoteUrl}
+
+                    avatarPeopleList={avatarPeopleList}
+                    downloadAvatarUrl={downloadAvatarUrl}
+                    genAvatarLink={genAvatarLink}
+
+                />
+            </>
+        </ThemeProvider>
+    )
+}
 
 
 function hexToRgb(hex) {
