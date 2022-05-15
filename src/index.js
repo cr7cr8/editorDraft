@@ -72,6 +72,16 @@ export function DraftEditor({
 
 
     const [mode, setMode] = React.useState(themeMode || 'light');
+    useEffect(function () {
+        setMode("themeMode")
+
+    }, [themeMode])
+
+    useEffect(function () {
+        setColorObj(Number(colorIndex) % colorArr.length)
+
+    }, [colorIndex])
+
 
     const colorBgObj = mode === "light"
         ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
@@ -266,7 +276,6 @@ export function DraftViewer({
     const [colorObj, setColorObj] = useColorObj(Number(colorIndex) % colorArr.length)
 
 
-
     const scaleSizeObj = useCallback((factor = 1) => {
         const obj = {}
         Object.keys(sizeObj).forEach(itemKey => {
@@ -279,7 +288,6 @@ export function DraftViewer({
 
         return obj
     }, [sizeObj])
-
 
     const addingSizeObj = useCallback((numOfPix = 0) => {
         const obj = {}
@@ -294,8 +302,18 @@ export function DraftViewer({
         return obj
     }, [sizeObj])
 
-
     const [mode, setMode] = React.useState(themeMode || 'light');
+
+    useEffect(function () {
+        setMode("themeMode")
+
+    }, [themeMode])
+    
+    useEffect(function () {
+        setColorObj(Number(colorIndex) % colorArr.length)
+
+    }, [colorIndex])
+
 
     const colorBgObj = mode === "light"
         ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
