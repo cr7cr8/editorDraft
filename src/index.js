@@ -22,7 +22,21 @@ function useColorObj(colorIndex = 5) {
 }
 
 
-export default function ThemeContextProvider({ cssBaseLine = true, ...props }) {
+export default function ThemeContextProvider({
+
+    cssBaseLine = true,
+
+    peopleList = ["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"],
+    avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
+    downloadAvatarUrl = "https://picsum.photos/200",
+    genAvatarLink = {
+        function(downloadAvatarUrl, personName) {
+            return downloadAvatarUrl// + personName
+        }
+    },
+    onChange,
+    onSubmit,
+    ...props }) {
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
@@ -222,15 +236,12 @@ export default function ThemeContextProvider({ cssBaseLine = true, ...props }) {
             {cssBaseLine && <CssBaseline />}
             <EditorCtx
 
-                peopleList={["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"]}
-                avatarPeopleList={["UweF23", "TonyCerl", "大发发", "m大Gsd哈"]}
-                downloadAvatarUrl={`https://picsum.photos/200`}
-                genAvatarLink={function (downloadAvatarUrl, personName) {
-                    return downloadAvatarUrl// + personName
-                }}
-
-             
-
+                peopleList={peopleList}
+                avatarPeopleList={avatarPeopleList}
+                downloadAvatarUrl={downloadAvatarUrl}
+                genAvatarLink={genAvatarLink}
+                onChange={onChange}
+                onSubmit={onSubmit}
             />
         </ThemeProvider>
 
