@@ -22,7 +22,7 @@ function useColorObj(colorIndex = 5) {
 }
 
 
-export default function DraftEditor({
+export function DraftEditor({
 
     cssBaseLine = true,
     colorIndex = "5",
