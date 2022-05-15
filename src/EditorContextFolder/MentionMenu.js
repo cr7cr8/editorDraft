@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -49,7 +49,7 @@ export default function MentionMenu({ tabIndex, setShowing, setTabName, nameList
                 zIndex: 500,
                 opacity,
                 ...Boolean(right) && { right: 0 },
-                
+
             }}
         >
 
@@ -97,7 +97,7 @@ export function MentionMenuItem({ name, index, inTab, insertMention }) {
                     bgcolor: colorBgObj,
                 },
                 ...inTab === index && {
-                
+
                     color: theme.isLight ? colorObj[500] : colorObj[300],
                     bgcolor: colorBgObj,
                 }
@@ -114,7 +114,7 @@ export function MentionMenuItem({ name, index, inTab, insertMention }) {
                             width: theme.scaleSizeObj(1),
                             height: theme.scaleSizeObj(1),
                             transform: "scale(1.1)",
-                
+
                         }
                     }}
                 />}
