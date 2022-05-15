@@ -1,6 +1,6 @@
 
 
-import { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { EditorState, ContentState, ContentBlock, CharacterMetadata, SelectionState, convertToRaw, convertFromRaw, RichUtils, Modifier, convertFromHTML, AtomicBlockUtils } from 'draft-js';
 import { Container, Grid, Paper, Typography, Box, Popover, Popper } from '@mui/material';
 
@@ -227,7 +227,7 @@ export default function createMentionPlugin() {
     function Mention({ ...props }) {
 
 
-        const { peopleList  } = useContext(EditorContext)
+        const { peopleList } = useContext(EditorContext)
 
         const theme = useTheme()
 
