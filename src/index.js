@@ -25,7 +25,7 @@ function useColorObj(colorIndex = 5) {
 export default function DraftEditor({
 
     cssBaseLine = true,
-
+    colorIndex = "5",
     peopleList = ["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"],
     avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
     downloadAvatarUrl = "https://picsum.photos/200",
@@ -38,7 +38,7 @@ export default function DraftEditor({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(5)
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex))
 
 
 
@@ -247,11 +247,11 @@ export default function DraftEditor({
 
 
 export function DraftViewer({
-    colorIndex = "2",
     cssBaseLine = true,
+    colorIndex = "2",
     preHtml = "",
-    downloadImageUrl = "/api/picture/downloadPicture/",
-    downloadVoteUrl = "/api/voteBlock/",
+    downloadImageUrl = "",
+    downloadVoteUrl = "",
     avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
     downloadAvatarUrl = "https://picsum.photos/200",
     genAvatarLink = function (downloadAvatarUrl, personName) {
