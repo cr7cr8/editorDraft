@@ -11,10 +11,10 @@ const colorArr = [red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan, 
 
 function useColorObj(colorIndex = 5) {
 
-    const [colorObj, setColorIndex] = useState(colorArr[colorIndex])
+    const [colorObj, setColorIndex] = useState(colorArr[colorIndex % colorArr.length])
 
     function setColorObj(index) {
-        setColorIndex(colorArr[index])
+        setColorIndex(colorArr[index % colorArr.length])
     }
 
     return [colorObj, setColorObj]
@@ -39,7 +39,7 @@ export function DraftEditor({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(Number(colorIndex) % colorArr.length)
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex))
 
 
 
@@ -78,7 +78,7 @@ export function DraftEditor({
     }, [themeMode])
 
     useEffect(function () {
-        setColorObj(Number(colorIndex) % colorArr.length)
+        setColorObj(Number(colorIndex))
 
     }, [colorIndex])
 
@@ -310,7 +310,7 @@ export function DraftViewer({
     }, [themeMode])
 
     useEffect(function () {
-        setColorObj(Number(colorIndex) % colorArr.length)
+        setColorObj(Number(colorIndex))
 
     }, [colorIndex])
 
