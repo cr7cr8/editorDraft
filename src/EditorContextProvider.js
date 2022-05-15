@@ -15,7 +15,7 @@ import AvatarChip from "./EditorViewerFolder/AvatarChip";
 import LinkTag from "./EditorViewerFolder/LinkTag";
 
 
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import { ThemeProvider, useTheme, createTheme,experimental_sx as sx } from '@mui/material/styles';
 import { Container, Grid, Paper, IconButton, ButtonGroup, Stack, Button, Switch, Box, Hidden, Collapse, CssBaseline } from '@mui/material';
 
 
