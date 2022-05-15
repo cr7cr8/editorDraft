@@ -31,7 +31,7 @@
     "emoji-regex": "^10.1.0",
     "html-react-parser": "^1.4.12",
     "immutable": "^3.8.2",
-    "react": "^18.1.0",
+    "react": "^18.0.0",
     "react-countdown": "^2.3.2",
     "react-device-detect": "^2.2.2",
     "react-dom": "18.0.0",
@@ -44,7 +44,8 @@
       [
         "@babel/preset-react",
         {
-          "runtime": "automatic"
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
         }
       ],
       "@babel/preset-env"
