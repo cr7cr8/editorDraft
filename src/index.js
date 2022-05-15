@@ -234,7 +234,7 @@ export function DraftEditor({
 
                 }
             }),
-        [themeMode, colorIndex, mode, sizeObj, colorObj],
+        [colorIndex, mode, sizeObj, colorObj],
     );
 
     return (
@@ -308,7 +308,7 @@ export function DraftViewer({
         setMode("themeMode")
 
     }, [themeMode])
-    
+
     useEffect(function () {
         setColorObj(Number(colorIndex) % colorArr.length)
 
@@ -467,7 +467,7 @@ export function DraftViewer({
 
                 }
             }),
-        [themeMode, colorIndex, mode, sizeObj, colorObj],
+        [colorIndex, mode, sizeObj, colorObj],
     );
 
     return (
