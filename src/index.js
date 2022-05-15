@@ -247,6 +247,7 @@ export default function DraftEditor({
 
 
 export function DraftViewer({
+    colorIndex = "2",
     cssBaseLine = true,
     preHtml = "",
     downloadImageUrl = "/api/picture/downloadPicture/",
@@ -259,45 +260,45 @@ export function DraftViewer({
     ...props }) {
 
 
-        const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-        const [colorObj, setColorObj] = useColorObj(5)
-    
-    
-    
-        const scaleSizeObj = useCallback((factor = 1) => {
-            const obj = {}
-            Object.keys(sizeObj).forEach(itemKey => {
-    
-                const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
-                const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
-                obj[itemKey] = num + unit
-    
-            })
-    
-            return obj
-        }, [sizeObj])
-    
-    
-        const addingSizeObj = useCallback((numOfPix = 0) => {
-            const obj = {}
-            Object.keys(sizeObj).forEach(itemKey => {
-    
-                //  const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
-                //  const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
-                obj[itemKey] = `calc(${sizeObj[itemKey]} ${numOfPix >= 0 ? "+" : "-"} ${Math.abs(numOfPix)}px)`
-    
-            })
-    
-            return obj
-        }, [sizeObj])
-    
-    
-        const [mode, setMode] = React.useState(props.mode || 'light');
-    
-        const colorBgObj = mode === "light"
-            ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
-            : `rgba( ${hexToRgb(colorObj[900]).r}, ${hexToRgb(colorObj[900]).g}, ${hexToRgb(colorObj[900]).b},   0.5)`
-    
+    const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex))
+
+
+
+    const scaleSizeObj = useCallback((factor = 1) => {
+        const obj = {}
+        Object.keys(sizeObj).forEach(itemKey => {
+
+            const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
+            const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
+            obj[itemKey] = num + unit
+
+        })
+
+        return obj
+    }, [sizeObj])
+
+
+    const addingSizeObj = useCallback((numOfPix = 0) => {
+        const obj = {}
+        Object.keys(sizeObj).forEach(itemKey => {
+
+            //  const num = Number(sizeObj[itemKey].replace(/[^\d\.]/g, '')) * factor
+            //  const unit = String(sizeObj[itemKey].replace(/[\d\.]/g, ''))
+            obj[itemKey] = `calc(${sizeObj[itemKey]} ${numOfPix >= 0 ? "+" : "-"} ${Math.abs(numOfPix)}px)`
+
+        })
+
+        return obj
+    }, [sizeObj])
+
+
+    const [mode, setMode] = React.useState(props.mode || 'light');
+
+    const colorBgObj = mode === "light"
+        ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
+        : `rgba( ${hexToRgb(colorObj[900]).r}, ${hexToRgb(colorObj[900]).g}, ${hexToRgb(colorObj[900]).b},   0.5)`
+
 
 
     const myTheme = React.useMemo(
