@@ -72,10 +72,10 @@ export function DraftEditor({
 
 
     const [mode, setMode] = React.useState(themeMode || 'light');
-    // useEffect(function () {
-    //     setMode("themeMode")
+    useEffect(function () {
+        setMode(themeMode)
 
-    // }, [themeMode])
+    }, [themeMode])
 
     useEffect(function () {
         setColorObj(Number(colorIndex) % colorArr.length)
@@ -304,10 +304,10 @@ export function DraftViewer({
 
     const [mode, setMode] = React.useState(themeMode || 'light');
 
-    // useEffect(function () {
-    //     setMode("themeMode")
+    useEffect(function () {
+        setMode(themeMode)
 
-    // }, [themeMode])
+    }, [themeMode])
 
     useEffect(function () {
         setColorObj(Number(colorIndex) % colorArr.length)
