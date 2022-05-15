@@ -22,10 +22,10 @@ import { Container, Grid, Paper, IconButton, ButtonGroup, Stack, Button, Switch,
 
 
 
-export default function ThemeContextProvider({ cssBaseLine = true, children, mode = "light", sizeObj = null }) {
+export default function ThemeContextProvider({ cssBaseLine = true, children, themeMode = "light", themeSizeObj = null }) {
 
 
-    const [sizeObj, setSizeObj] = useState({ xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
+    const [sizeObj, setSizeObj] = useState(themeSizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
     const [colorObj, setColorObj] = useColorObj(5)
 
 
@@ -57,7 +57,7 @@ export default function ThemeContextProvider({ cssBaseLine = true, children, mod
     }, [sizeObj])
 
 
-    const [mode, setMode] = React.useState(mode || 'light');
+    const [mode, setMode] = React.useState(themeMode || 'light');
 
 
 
@@ -235,7 +235,7 @@ export function EditorContextProvider({
     genAvatarLink = () => { },
 
 
-    cssBaseLine = true, mode = "light", sizeObj,
+    cssBaseLine = true, themeMode = "light", themeSizeObj,
 
     onChange,
     onSubmit,
@@ -328,7 +328,7 @@ export function EditorContextProvider({
         }}>
 
 
-            <ThemeContextProvider cssBaseLine={cssBaseLine} mode={mode} sizeObj={sizeObj}>
+            <ThemeContextProvider cssBaseLine={cssBaseLine} themeMode={themeMode} themeSizeObj={themeSizeObj}>
                 <DraftEditor />
             </ThemeContextProvider>
 
