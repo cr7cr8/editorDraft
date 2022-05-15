@@ -25,6 +25,7 @@ function useColorObj(colorIndex = 5) {
 export function DraftEditor({
 
     cssBaseLine = true,
+    themeMode = "light",
     colorIndex = "5",
     peopleList = ["UweF23", "UweF22", "TonyCerl", "JimWil", "大发发", "Jimberg", "m大Gsd哈"],
     avatarPeopleList = ["UweF23", "TonyCerl", "大发发", "m大Gsd哈"],
@@ -38,7 +39,7 @@ export function DraftEditor({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(Number(colorIndex))
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex)%colorArr.length)
 
 
 
@@ -70,7 +71,7 @@ export function DraftEditor({
     }, [sizeObj])
 
 
-    const [mode, setMode] = React.useState(props.mode || 'light');
+    const [mode, setMode] = React.useState(themeMode || 'light');
 
     const colorBgObj = mode === "light"
         ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
@@ -248,7 +249,8 @@ export function DraftEditor({
 
 export function DraftViewer({
     cssBaseLine = true,
-    colorIndex = "2",
+    themeMode = "light",
+    colorIndex = "5",
     preHtml = "",
     downloadImageUrl = "",
     downloadVoteUrl = "",
@@ -261,7 +263,7 @@ export function DraftViewer({
 
 
     const [sizeObj, setSizeObj] = useState(props.sizeObj || { xs: "1.5rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem", xl: "1.5rem" })
-    const [colorObj, setColorObj] = useColorObj(Number(colorIndex))
+    const [colorObj, setColorObj] = useColorObj(Number(colorIndex)%colorArr.length)
 
 
 
@@ -293,7 +295,7 @@ export function DraftViewer({
     }, [sizeObj])
 
 
-    const [mode, setMode] = React.useState(props.mode || 'light');
+    const [mode, setMode] = React.useState(themeMode || 'light');
 
     const colorBgObj = mode === "light"
         ? `rgba( ${hexToRgb(colorObj[100]).r}, ${hexToRgb(colorObj[100]).g}, ${hexToRgb(colorObj[100]).b},   0.5)`
